@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhh7d6axgd4av"]
+
+[ext_resource type="Texture2D" uid="uid://65h2rpr6wl2e" path="res://art/enemyFlyingAlt_1.png" id="1_qoh83"]
+[ext_resource type="Script" path="res://Mob.cs" id="1_v46kd"]
+[ext_resource type="Texture2D" uid="uid://kwc585c8n8qm" path="res://art/enemyFlyingAlt_2.png" id="2_1p14y"]
+[ext_resource type="Texture2D" uid="uid://etifue5iahpx" path="res://art/enemySwimming_1.png" id="3_s1mio"]
+[ext_resource type="Texture2D" uid="uid://dr0npj5ynx6rw" path="res://art/enemySwimming_2.png" id="4_ofpkx"]
+[ext_resource type="Texture2D" uid="uid://cfuaqpq6ujweu" path="res://art/enemyWalking_1.png" id="5_dasv2"]
+[ext_resource type="Texture2D" uid="uid://bgq8bcsucwbvw" path="res://art/enemyWalking_2.png" id="6_xwpsr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gm2fv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qoh83")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1p14y")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_s1mio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ofpkx")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dasv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xwpsr")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_doc1x"]
+radius = 38.0
+height = 102.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_v46kd")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_gm2fv")
+animation = &"swim"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_doc1x")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
