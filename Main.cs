@@ -44,28 +44,28 @@ public partial class Main : Node
 
 	private void onMobTimerTimeout()
 	{
-		Mob mob = MobScene.Instantiate<Mob>();
+		Mob Mob = MobScene.Instantiate<Mob>();
 
 		// choose a random location on path2D
-		var mobSpawnLocation = GetNode<PathFollow2D>("MobPath/MobSpawnLocation");
-		mobSpawnLocation.ProgressRatio = GD.Randf();
+		var MobSpawnLocation = GetNode<PathFollow2D>("MobPath/MobSpawnLocation");
+		MobSpawnLocation.ProgressRatio = GD.Randf();
 
 		// set the mobs direction perpendicular to the path
-		float direction = mobSpawnLocation.Rotation = Mathf.Pi / 2;
+		float direction = MobSpawnLocation.Rotation = Mathf.Pi / 2;
 
 		// set the mobs position to a random location
-		mob.Position = mobSpawnLocation.Position;
+		Mob.Position = MobSpawnLocation.Position;
 
 		// add some randomness to direction
 		direction += (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4);
-		mob.Rotation = direction;
+		Mob.Rotation = direction;
 
 		// choose the velocity
 		var velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
-		mob.LinearVelocity = velocity.Rotated(direction);
+		Mob.LinearVelocity = velocity.Rotated(direction);
 
 		// spawn the mob by adding it to the scene
-		AddChild(mob);
+		AddChild(Mob);
 	}
 
 	[Export]
